@@ -1,0 +1,28 @@
+%form{:id => 'create_player_form', :action => '{% url controller="player" action="create" %}', :method => "post"}
+  .rowElem
+    %label{:for => 'identity'} 登錄名
+    %input{:type => 'text', :name => 'identity', :id => 'identity', :required => 'required'}
+  .rowElem
+    %label{:for => 'password'} 密碼
+    %input{:type => 'password', :name => 'password', :id => 'password', :required => 'required'}
+  .rowElem
+    %label{:for => 're-password'} 確認密碼
+    %input{:type => 'password', :name => 're-password', :id => 're-password', :required => 'required'}
+  .rowElem
+    %label{:for => 'credit'} 信用账户
+    %input{:type => 'number', :name => 'credit', :id => 'credit', :min => 0, :value => 0, :required => 'required'}
+  .rowElem
+    %label{:for => 'cash'} 現金账户
+    %input{:type => 'number', :name => 'cash', :id => 'cash', :min => 0, :value => 0, :required => 'required'}
+  .rowElem
+    %input{:type => 'submit', :value => '創建'}
+    %a.cancel 取消
+
+:javascript
+  $.init_form("create_player_form", function(formData, form) {
+    identity = $.get(formData, "identity")
+    formData.push({name: "nick", type: "text", value: $.base64Encode(identity)})
+    return $.check_password(formData)
+  }, function() {
+    console.log("create_successful")
+  })

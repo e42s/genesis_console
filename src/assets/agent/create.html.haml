@@ -1,0 +1,29 @@
+%form{:id => 'create_agent_form', :action => '/agent/create', :method => "post"}
+  .rowElem
+    %label{:for => 'identity'} 登錄名
+    %input{:type => 'text', :name => 'identity', :id => 'identity', :required => 'required'}
+  .rowElem
+    %label{:for => 'password'} 密碼
+    %input{:type => 'password', :name => 'password', :id => 'password', :required => 'required'}
+  .rowElem
+    %label{:for => 're-password'} 確認密碼
+    %input{:type => 'password', :name => 're-password', :id => 're-password', :required => 'required'}
+  .rowElem
+    %label{:for => 'nick'} 中文標識
+    %input{:type => 'text', :name => 'nick', :id => 'nick', :required => 'required'}
+  .rowElem
+    %label{:for => 'credit'} 信用账户
+    %input{:type => 'number', :name => 'credit', :id => 'credit', :min => 0, :value => 0, :required => 'required'}
+  .rowElem
+    %label{:for => 'cash'} 現金账户
+    %input{:type => 'number', :name => 'cash', :id => 'cash', :min => 0, :value => 0, :required => 'required'}
+  .rowElem
+    %input{:type => 'submit', :value => '創建'}
+    %a.cancel 取消
+
+:javascript
+  $.init_form("create_agent_form", function(formData) {
+    return $.check_password(formData)
+  }, function() {
+    console.log("create_successful")
+  })

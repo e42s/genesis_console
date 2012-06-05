@@ -1,0 +1,10 @@
+.eunit
+deps
+priv
+ebin
+log
+Mnesia*
+*.o
+*.beam
+*.plt
+*.dump
