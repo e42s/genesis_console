@@ -23,6 +23,7 @@ setup() ->
   ?assertEqual(ok, mnesia:delete_schema([node()])),
   ?assertEqual(ok, mnesia:create_schema([node()])),
   ?assertEqual(ok, mnesia:start()),
+  ?assertEqual(ok, gc_schema:rebuild()),
   ?assertEqual(ok, schema:rebuild_core()),
 
   ?assertEqual(false, is_pid(whereis(gc_monitor))),

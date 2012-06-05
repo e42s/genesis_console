@@ -7,6 +7,12 @@ db_get_all_test_() -> {spawn, {setup, fun setup/0, fun cleanup/1, [
           ?assertEqual([], gc_db:get_all(tab_turnover_log)),
           ?assertEqual(ok, mnesia:dirty_write(#tab_turnover_log{})),
           ?assertMatch([#tab_turnover_log{}], gc_db:get_all(tab_turnover_log))
+      end,
+
+      fun () ->
+          ?assertEqual([], gc_db:get_all(tab_agent)),
+          ?assertEqual(ok, mnesia:dirty_write(#tab_agent{})),
+          ?assertMatch([#tab_agent{}], gc_db:get_all(tab_agent))
       end
     ]}}.
 
@@ -23,6 +29,7 @@ setup() ->
   ?assertEqual(ok, mnesia:delete_schema([node()])),
   ?assertEqual(ok, mnesia:create_schema([node()])),
   ?assertEqual(ok, mnesia:start()),
+  ?assertEqual(ok, gc_schema:rebuild()),
   ?assertEqual(ok, schema:rebuild_core()).
 
 cleanup(_) ->

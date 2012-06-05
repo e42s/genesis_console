@@ -1,8 +1,7 @@
 -module(gc_authreq).
 -compile([export_all]).
 
--include_lib("genesis/include/common.hrl").
--include_lib("genesis/include/schema.hrl").
+-include("common.hrl").
 
 require_login(Req, SessionID) ->
   {_, Uri} = Req:uri(),
