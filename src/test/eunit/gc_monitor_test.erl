@@ -4,6 +4,7 @@
 
 monitor_test_() -> ?SPAWN_TEST([
       fun () ->
+          ?assert(is_pid(whereis(gc_monitor))),
           ?assertEqual(ok, mnesia:dirty_write(#tab_agent_player{pid = 1, aid = root})),
           ?assertEqual(ok, mnesia:dirty_write(#tab_agent_player{pid = 2, aid = root})),
 
