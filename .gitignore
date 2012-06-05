@@ -1,6 +1,5 @@
 .eunit
 deps
-priv
 ebin
 log
 Mnesia*
